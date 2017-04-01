@@ -16,14 +16,16 @@ import android.widget.TextView;
 import com.n37bl4d3.locationtracker.Configuration;
 import com.n37bl4d3.locationtracker.R;
 import com.n37bl4d3.locationtracker.helpers.LogHelper;
-import com.n37bl4d3.locationtracker.interfaces.TabLayoutInterface;
+import com.n37bl4d3.locationtracker.interfaces.ITabLayout;
 import com.n37bl4d3.locationtracker.services.LocationService;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UpdatesTabFragment extends Fragment implements TabLayoutInterface {
+public class UpdatesTabFragment extends Fragment implements ITabLayout {
+
+    private static final String TAG = UpdatesTabFragment.class.getName();
 
     public UpdatesTabFragment() {
         // Required empty public constructor
@@ -32,7 +34,16 @@ public class UpdatesTabFragment extends Fragment implements TabLayoutInterface {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        LogHelper.verboseLog("\"" + this.getClass().getName() + "\" onCreateView");
+        LogHelper.verboseLog(TAG,
+                "File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
 
         return inflater.inflate(R.layout.fragment_updates_tab, container, false);
     }
@@ -40,7 +51,16 @@ public class UpdatesTabFragment extends Fragment implements TabLayoutInterface {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LogHelper.verboseLog("\"" + this.getClass().getName() + "\" onViewCreated");
+        LogHelper.verboseLog(TAG,
+                "File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
 
         final TextView textView = (TextView) getActivity().findViewById(R.id.fragment_updates_tab_text_view);
 
@@ -78,6 +98,6 @@ public class UpdatesTabFragment extends Fragment implements TabLayoutInterface {
 
     @Override
     public CharSequence getPageTitle() {
-        return "UPDATES";
+        return Configuration.sUpdatesTabFragmentPageTitle;
     }
 }

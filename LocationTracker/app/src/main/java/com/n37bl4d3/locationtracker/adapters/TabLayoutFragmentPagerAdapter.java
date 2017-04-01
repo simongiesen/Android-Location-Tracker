@@ -4,32 +4,32 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.n37bl4d3.locationtracker.interfaces.TabLayoutInterface;
+import com.n37bl4d3.locationtracker.interfaces.ITabLayout;
 
 import java.util.ArrayList;
 
 public class TabLayoutFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private ArrayList<TabLayoutInterface> mTabLayoutInterfaceArrayList;
+    private ArrayList<ITabLayout> mITabLayoutArrayList;
 
-    public TabLayoutFragmentPagerAdapter(FragmentManager fragmentManager, ArrayList<TabLayoutInterface> tabLayoutInterfaceArrayList) {
+    public TabLayoutFragmentPagerAdapter(FragmentManager fragmentManager, ArrayList<ITabLayout> ITabLayoutArrayList) {
         super(fragmentManager);
 
-        mTabLayoutInterfaceArrayList = tabLayoutInterfaceArrayList;
+        mITabLayoutArrayList = ITabLayoutArrayList;
     }
 
     @Override
     public int getCount() {
-        return mTabLayoutInterfaceArrayList.size();
+        return mITabLayoutArrayList.size();
     }
 
     @Override
     public Fragment getItem(int position) {
-        return mTabLayoutInterfaceArrayList.get(position).getItem();
+        return mITabLayoutArrayList.get(position).getItem();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return mTabLayoutInterfaceArrayList.get(position).getPageTitle();
+        return mITabLayoutArrayList.get(position).getPageTitle();
     }
 }

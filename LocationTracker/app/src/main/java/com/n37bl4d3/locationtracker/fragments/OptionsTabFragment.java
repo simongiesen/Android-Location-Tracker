@@ -28,10 +28,12 @@ import android.widget.RadioGroup;
 import com.n37bl4d3.locationtracker.Configuration;
 import com.n37bl4d3.locationtracker.R;
 import com.n37bl4d3.locationtracker.helpers.LogHelper;
-import com.n37bl4d3.locationtracker.interfaces.TabLayoutInterface;
+import com.n37bl4d3.locationtracker.interfaces.ITabLayout;
 import com.n37bl4d3.locationtracker.services.LocationService;
 
-public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
+public class OptionsTabFragment extends Fragment implements ITabLayout {
+
+    private static final String TAG = OptionsTabFragment.class.getName();
 
     private String mNetworkProvider, mGpsProvider, mPassiveProvider;
 
@@ -53,7 +55,16 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
     private ServiceConnection mLocationServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            LogHelper.debugLog("\"" + name.getClassName() + "\" onServiceConnected");
+            LogHelper.debugLog(TAG,
+                    "File name: \"" +
+                            Thread.currentThread().getStackTrace()[2].getFileName() +
+                            "\", Line number: " +
+                            Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                            ", Class name: \"" +
+                            Thread.currentThread().getStackTrace()[2].getClassName() +
+                            "\", Method name: \"" +
+                            Thread.currentThread().getStackTrace()[2].getMethodName() +
+                            "\"");
 
             mIsLocationServiceBound = true;
 
@@ -91,7 +102,16 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            LogHelper.debugLog("\"" + name.getClassName() + "\" onServiceDisconnected");
+            LogHelper.debugLog(TAG,
+                    "File name: \"" +
+                            Thread.currentThread().getStackTrace()[2].getFileName() +
+                            "\", Line number: " +
+                            Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                            ", Class name: \"" +
+                            Thread.currentThread().getStackTrace()[2].getClassName() +
+                            "\", Method name: \"" +
+                            Thread.currentThread().getStackTrace()[2].getMethodName() +
+                            "\"");
 
             mIsLocationServiceBound = false;
         }
@@ -100,7 +120,16 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogHelper.verboseLog("\"" + this.getClass().getName() + "\" onCreate");
+        LogHelper.verboseLog(TAG,
+                "File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
 
         if (Configuration.sIsFeatureLocationAvailable) {
             if (Configuration.sIsFeatureLocationNetworkAvailable) {
@@ -118,26 +147,35 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        LogHelper.verboseLog("\"" + this.getClass().getName() + "\" onDestroy");
+        LogHelper.verboseLog(TAG,
+                "File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
 
         if (Configuration.sIsFeatureLocationAvailable) {
             if (mIsLocationServiceBound) {
-                LogHelper.debugLog("Unbinding \"" + LocationService.class.getName() + "\"");
+                LogHelper.debugLog(TAG, "Unbinding \"" + LocationService.class.getName() + "\"");
                 try {
                     getActivity().unbindService(mLocationServiceConnection);
 
                     mIsLocationServiceBound = false;
                 } catch (Exception e) {
-                    LogHelper.errorLog("Error while trying to unbind \"" + LocationService.class.getName() + "\"");
+                    LogHelper.errorLog(TAG, "Error while trying to unbind \"" + LocationService.class.getName() + "\"; " + e.getMessage());
                     e.printStackTrace();
                 }
             }
 
-            LogHelper.debugLog("Stopping \"" + LocationService.class.getName() + "\"");
+            LogHelper.debugLog(TAG, "Stopping \"" + LocationService.class.getName() + "\"");
             try {
                 getActivity().stopService(new Intent(getActivity(), LocationService.class));
             } catch (Exception e) {
-                LogHelper.errorLog("Error while trying to stop \"" + LocationService.class.getName() + "\"");
+                LogHelper.errorLog(TAG, "Error while trying to stop \"" + LocationService.class.getName() + "\"; " + e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -146,7 +184,16 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        LogHelper.verboseLog("\"" + this.getClass().getName() + "\" onCreateView");
+        LogHelper.verboseLog(TAG,
+                "File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
 
         return inflater.inflate(R.layout.fragment_options_tab, container, false);
     }
@@ -154,7 +201,16 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LogHelper.verboseLog("\"" + this.getClass().getName() + "\" onViewCreated");
+        LogHelper.verboseLog(TAG,
+                "File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
 
         if (Configuration.sIsFeatureLocationAvailable) {
             LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
@@ -225,19 +281,19 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
         mSpecifiedProviderRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                LogHelper.debugLog("\"" + this.getClass().getName() + "\" mSpecifiedProviderRadioGroup onCheckedChanged");
+                LogHelper.debugLog(TAG, "mSpecifiedProviderRadioGroup onCheckedChanged");
 
                 switch (checkedId) {
                     case R.id.fragment_options_tab_specifier_provider_box_radio_group_provider_network:
-                        LogHelper.debugLog("\"" + this.getClass().getName() + "\" mSpecifiedProviderRadioGroup: Network");
+                        LogHelper.debugLog(TAG, "mSpecifiedProviderRadioGroup: Network");
 
                         break;
                     case R.id.fragment_options_tab_specifier_provider_box_radio_group_provider_gps:
-                        LogHelper.debugLog("\"" + this.getClass().getName() + "\" mSpecifiedProviderRadioGroup: GPS");
+                        LogHelper.debugLog(TAG, "mSpecifiedProviderRadioGroup: GPS");
 
                         break;
                     case R.id.fragment_options_tab_specifier_provider_box_radio_group_provider_passive:
-                        LogHelper.debugLog("\"" + this.getClass().getName() + "\" mSpecifiedProviderRadioGroup: Passive");
+                        LogHelper.debugLog(TAG, "mSpecifiedProviderRadioGroup: Passive");
 
                         break;
                 }
@@ -277,11 +333,11 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
         updateTypeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                LogHelper.debugLog("\"" + this.getClass().getName() + "\" mUpdateTypeRadioGroup onCheckedChanged");
+                LogHelper.debugLog(TAG, "mUpdateTypeRadioGroup onCheckedChanged");
 
                 switch (checkedId) {
                     case R.id.fragment_options_tab_update_type_box_radio_group_single:
-                        LogHelper.debugLog("\"" + this.getClass().getName() + "\" mUpdateTypeRadioGroup: Single");
+                        LogHelper.debugLog(TAG, "mUpdateTypeRadioGroup: Single");
 
                         mUpdateOptionsMinimumTimeBetweenUpdates.setEnabled(false);
                         mUpdateOptionsMinimumTimeBetweenUpdates.getText().clear();
@@ -293,7 +349,7 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
 
                         break;
                     case R.id.fragment_options_tab_update_type_box_radio_group_periodical:
-                        LogHelper.debugLog("\"" + this.getClass().getName() + "\" mUpdateTypeRadioGroup: Periodical");
+                        LogHelper.debugLog(TAG, "mUpdateTypeRadioGroup: Periodical");
 
                         mUpdateOptionsMinimumTimeBetweenUpdates.setEnabled(true);
                         mUpdateOptionsMinimumTimeBetweenUpdates.setText(String.valueOf(60000));
@@ -325,19 +381,19 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
                 if (Configuration.sIsFeatureLocationAvailable) {
                     if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         if ((mSpecifiedProviderRadioGroupProviderNetworkRadioButton.isChecked() || mSpecifiedProviderRadioGroupProviderGpsRadioButton.isChecked() || mSpecifiedProviderRadioGroupProviderPassiveRadioButton.isChecked()) && (mUpdateTypeRadioGroupSingleRadioButton.isChecked() && (mUpdateOptionsMinimumTimeBetweenUpdates.getText().toString().trim().isEmpty() && mUpdateOptionsMinimumDistanceBetweenUpdates.getText().toString().trim().isEmpty())) || (mUpdateTypeRadioGroupPeriodicalRadioButton.isChecked() && (!mUpdateOptionsMinimumTimeBetweenUpdates.getText().toString().trim().isEmpty() && !mUpdateOptionsMinimumDistanceBetweenUpdates.getText().toString().trim().isEmpty()))) {
-                            LogHelper.debugLog("Starting \"" + LocationService.class.getName() + "\"");
+                            LogHelper.debugLog(TAG, "Starting \"" + LocationService.class.getName() + "\"");
                             try {
                                 getActivity().startService(new Intent(getActivity(), LocationService.class));
                             } catch (Exception e) {
-                                LogHelper.errorLog("Error while trying to start \"" + LocationService.class.getName() + "\"");
+                                LogHelper.errorLog(TAG, "Error while trying to start \"" + LocationService.class.getName() + "\"; " + e.getMessage());
                                 e.printStackTrace();
                             }
 
-                            LogHelper.debugLog("Binding \"" + LocationService.class.getName() + "\"");
+                            LogHelper.debugLog(TAG, "Binding \"" + LocationService.class.getName() + "\"");
                             try {
                                 getActivity().bindService(new Intent(getActivity(), LocationService.class), mLocationServiceConnection, Context.BIND_AUTO_CREATE);
                             } catch (Exception e) {
-                                LogHelper.errorLog("Error while trying to bind \"" + LocationService.class.getName() + "\"");
+                                LogHelper.errorLog(TAG, "Error while trying to bind \"" + LocationService.class.getName() + "\"; " + e.getMessage());
                                 e.printStackTrace();
                             }
 
@@ -411,22 +467,22 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
             public void onClick(View v) {
                 if (Configuration.sIsFeatureLocationAvailable) {
                     if (mIsLocationServiceBound) {
-                        LogHelper.debugLog("Unbinding \"" + LocationService.class.getName() + "\"");
+                        LogHelper.debugLog(TAG, "Unbinding \"" + LocationService.class.getName() + "\"");
                         try {
                             getActivity().unbindService(mLocationServiceConnection);
 
                             mIsLocationServiceBound = false;
                         } catch (Exception e) {
-                            LogHelper.errorLog("Error while trying to unbind \"" + LocationService.class.getName() + "\"");
+                            LogHelper.errorLog(TAG, "Error while trying to unbind \"" + LocationService.class.getName() + "\"; " + e.getMessage());
                             e.printStackTrace();
                         }
                     }
 
-                    LogHelper.debugLog("Stopping \"" + LocationService.class.getName() + "\"");
+                    LogHelper.debugLog(TAG, "Stopping \"" + LocationService.class.getName() + "\"");
                     try {
                         getActivity().stopService(new Intent(getActivity(), LocationService.class));
                     } catch (Exception e) {
-                        LogHelper.errorLog("Error while trying to stop \"" + LocationService.class.getName() + "\"");
+                        LogHelper.errorLog(TAG, "Error while trying to stop \"" + LocationService.class.getName() + "\"; " + e.getMessage());
                         e.printStackTrace();
                     }
                 }
@@ -441,6 +497,6 @@ public class OptionsTabFragment extends Fragment implements TabLayoutInterface {
 
     @Override
     public CharSequence getPageTitle() {
-        return "OPTIONS";
+        return Configuration.sOptionsTabFragmentPageTitle;
     }
 }
