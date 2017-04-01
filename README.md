@@ -48,8 +48,6 @@
 private ServiceConnection mLocationServiceConnection = new ServiceConnection() {
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
-        LogHelper.debugLog("\"" + name.getClassName() + "\" onServiceConnected");
-
         mIsLocationServiceBound = true;
 
         LocationService.LocalBinder localBinder = (LocationService.LocalBinder) service;
@@ -65,8 +63,6 @@ private ServiceConnection mLocationServiceConnection = new ServiceConnection() {
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
-        LogHelper.debugLog("\"" + name.getClassName() + "\" onServiceDisconnected");
-
         mIsLocationServiceBound = false;
     }
 };
@@ -133,7 +129,6 @@ locationService.requestLocationUpdates(criteria, true, 6000, 20);
 <p>To stop requesting periodical location updates just simply stop "LocationService" or call the its "removeLocationUpdates()" method.</p>
 
 <h2>Manifest required permissions</h2>
-```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.n37bl4d3.locationtracker">
 
@@ -142,7 +137,6 @@ locationService.requestLocationUpdates(criteria, true, 6000, 20);
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 </manifest>
-```
 
 <h2>APK</h2>
 <a href="https://github.com/n37bl4d3/Android-Location-Tracker/raw/master/app-debug.apk" target="_blank">Download (Unsigned)</a>
