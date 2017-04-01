@@ -13,7 +13,7 @@
   <li>Build Tools Version: 25.0.2</li>
   <li>Min SDK Version: 19</li>
   <li>Target SDK Version: 25</li>
-  <li>Realm Mobile Database Version: 2.3.0</li>
+  <li>Realm Mobile Database Version: 3.0.0</li>
   <li>IDE used for development: Android Studio (recommended)</li>
 </ul>
 
@@ -134,10 +134,14 @@ locationService.requestLocationUpdates(criteria, true, 6000, 20);
 
 <h2>Manifest required permissions</h2>
 ```xml
-<uses-permission android:name="android.permission.WAKE_LOCK" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.n37bl4d3.locationtracker">
 
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+</manifest>
 ```
 
 <h2>APK</h2>
