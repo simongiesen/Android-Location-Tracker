@@ -13,7 +13,7 @@
   <li>Build Tools Version: 25.0.2</li>
   <li>Min SDK Version: 19</li>
   <li>Target SDK Version: 25</li>
-  <li>Realm Mobile Database Version: 3.0.0</li>
+  <li>Realm Mobile Database Version: 3.1.3</li>
   <li>IDE used for development: Android Studio (recommended)</li>
 </ul>
 
