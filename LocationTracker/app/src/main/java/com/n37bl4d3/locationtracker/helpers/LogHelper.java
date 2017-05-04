@@ -18,7 +18,7 @@ public class LogHelper {
             }
 
             if (Configuration.LOGGING_VERBOSE_SAVE) {
-                saveLog(Log.VERBOSE, Configuration.sApplicationName, msg);
+                logSave(Log.VERBOSE, Configuration.sApplicationName, msg);
             }
         }
     }
@@ -32,7 +32,7 @@ public class LogHelper {
             }
 
             if (Configuration.LOGGING_VERBOSE_SAVE) {
-                saveLog(Log.VERBOSE, tag, msg);
+                logSave(Log.VERBOSE, tag, msg);
             }
         }
     }
@@ -46,7 +46,7 @@ public class LogHelper {
             }
 
             if (Configuration.LOGGING_DEBUG_SAVE) {
-                saveLog(Log.DEBUG, Configuration.sApplicationName, msg);
+                logSave(Log.DEBUG, Configuration.sApplicationName, msg);
             }
         }
     }
@@ -60,7 +60,7 @@ public class LogHelper {
             }
 
             if (Configuration.LOGGING_DEBUG_SAVE) {
-                saveLog(Log.DEBUG, tag, msg);
+                logSave(Log.DEBUG, tag, msg);
             }
         }
     }
@@ -74,7 +74,7 @@ public class LogHelper {
             }
 
             if (Configuration.LOGGING_INFO_SAVE) {
-                saveLog(Log.INFO, Configuration.sApplicationName, msg);
+                logSave(Log.INFO, Configuration.sApplicationName, msg);
             }
         }
     }
@@ -88,7 +88,7 @@ public class LogHelper {
             }
 
             if (Configuration.LOGGING_INFO_SAVE) {
-                saveLog(Log.INFO, tag, msg);
+                logSave(Log.INFO, tag, msg);
             }
         }
     }
@@ -100,10 +100,10 @@ public class LogHelper {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
 
-        if (Configuration.LOGGING_WARN_SAVE) {
-            saveLog(Log.WARN, Configuration.sApplicationName, msg);
+            if (Configuration.LOGGING_WARN_SAVE) {
+                logSave(Log.WARN, Configuration.sApplicationName, msg);
+            }
         }
     }
 
@@ -116,7 +116,7 @@ public class LogHelper {
             }
 
             if (Configuration.LOGGING_WARN_SAVE) {
-                saveLog(Log.WARN, tag, msg);
+                logSave(Log.WARN, tag, msg);
             }
         }
     }
@@ -130,7 +130,7 @@ public class LogHelper {
             }
 
             if (Configuration.LOGGING_ERROR_SAVE) {
-                saveLog(Log.ERROR, Configuration.sApplicationName, msg);
+                logSave(Log.ERROR, Configuration.sApplicationName, msg);
             }
         }
     }
@@ -144,87 +144,210 @@ public class LogHelper {
             }
 
             if (Configuration.LOGGING_ERROR_SAVE) {
-                saveLog(Log.ERROR, tag, msg);
+                logSave(Log.ERROR, tag, msg);
             }
         }
     }
 
-    private static void saveLog(int verbosity, String tag, String msg) {
-        try {
-            File saveLogDirectoryFile = new File(Configuration.sFilesDirPath + File.separator + LogHelper.class.getSimpleName());
-            if (saveLogDirectoryFile.exists()) {
-                FileWriter fileWriter;
+    private static void verboseLogSave(String tag, String msg) {
+        FileWriter fileWriter;
 
+        try {
+            fileWriter = new FileWriter(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_VERBOSE_SAVE_FILE_NAME, true);
+            fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void debugLogSave(String tag, String msg) {
+        FileWriter fileWriter;
+
+        try {
+            fileWriter = new FileWriter(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_DEBUG_SAVE_FILE_NAME, true);
+            fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void infoLogSave(String tag, String msg) {
+        FileWriter fileWriter;
+
+        try {
+            fileWriter = new FileWriter(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_INFO_SAVE_FILE_NAME, true);
+            fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void warnLogSave(String tag, String msg) {
+        FileWriter fileWriter;
+
+        try {
+            fileWriter = new FileWriter(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_WARN_SAVE_FILE_NAME, true);
+            fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void errorLogSave(String tag, String msg) {
+        FileWriter fileWriter;
+
+        try {
+            fileWriter = new FileWriter(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_ERROR_SAVE_FILE_NAME, true);
+            fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void logSave(int verbosity, String tag, String msg) {
+        File logSaveDirs = new File(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName());
+
+        File verboseLogSaveFile = new File(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_VERBOSE_SAVE_FILE_NAME);
+        File debugLogSaveFile = new File(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_DEBUG_SAVE_FILE_NAME);
+        File infoLogSaveFile = new File(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_INFO_SAVE_FILE_NAME);
+        File warnLogSaveFile = new File(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_WARN_SAVE_FILE_NAME);
+        File errorLogSaveFile = new File(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_ERROR);
+
+        try {
+            if (logSaveDirs.exists() && logSaveDirs.isDirectory()) {
                 switch (verbosity) {
                     case Log.VERBOSE:
-                        fileWriter = new FileWriter(Configuration.sFilesDirPath + File.separator + LogHelper.class.getSimpleName() + File.separator + "verboseLog.log", true);
-                        fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
-                        fileWriter.close();
+                        if (verboseLogSaveFile.exists() && verboseLogSaveFile.isFile()) {
+                            verboseLogSave(tag, msg);
+                        } else {
+                            if (verboseLogSaveFile.createNewFile()) {
+                                verboseLogSave(tag, msg);
+                            } else {
+                                System.out.println("Will not save log, file \"" + Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_VERBOSE_SAVE_FILE_NAME + "\" not exists");
+                            }
+                        }
 
                         break;
                     case Log.DEBUG:
-                        fileWriter = new FileWriter(Configuration.sFilesDirPath + File.separator + LogHelper.class.getSimpleName() + File.separator + "debugLog.log", true);
-                        fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
-                        fileWriter.close();
+                        if (debugLogSaveFile.exists() && debugLogSaveFile.isFile()) {
+                            debugLogSave(tag, msg);
+                        } else {
+                            if (debugLogSaveFile.createNewFile()) {
+                                debugLogSave(tag, msg);
+                            } else {
+                                System.out.println("Will not save log, file \"" + Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_DEBUG_SAVE_FILE_NAME + "\" not exists");
+                            }
+                        }
 
                         break;
                     case Log.INFO:
-                        fileWriter = new FileWriter(Configuration.sFilesDirPath + File.separator + LogHelper.class.getSimpleName() + File.separator + "infoLog.log", true);
-                        fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
-                        fileWriter.close();
+                        if (infoLogSaveFile.exists() && infoLogSaveFile.isFile()) {
+                            infoLogSave(tag, msg);
+                        } else {
+                            if (infoLogSaveFile.createNewFile()) {
+                                infoLogSave(tag, msg);
+                            } else {
+                                System.out.println("Will not save log, file \"" + Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_INFO_SAVE_FILE_NAME + "\" not exists");
+                            }
+                        }
 
                         break;
                     case Log.WARN:
-                        fileWriter = new FileWriter(Configuration.sFilesDirPath + File.separator + LogHelper.class.getSimpleName() + File.separator + "warnLog.log", true);
-                        fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
-                        fileWriter.close();
+                        if (warnLogSaveFile.exists() && warnLogSaveFile.isFile()) {
+                            warnLogSave(tag, msg);
+                        } else {
+                            if (warnLogSaveFile.createNewFile()) {
+                                warnLogSave(tag, msg);
+                            } else {
+                                System.out.println("Will not save log, file \"" + Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_WARN_SAVE_FILE_NAME + "\" not exists");
+                            }
+                        }
 
                         break;
                     case Log.ERROR:
-                        fileWriter = new FileWriter(Configuration.sFilesDirPath + File.separator + LogHelper.class.getSimpleName() + File.separator + "errorLog.log", true);
-                        fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
-                        fileWriter.close();
+                        if (errorLogSaveFile.exists() && errorLogSaveFile.isFile()) {
+                            errorLogSave(tag, msg);
+                        } else {
+                            if (errorLogSaveFile.createNewFile()) {
+                                errorLogSave(tag, msg);
+                            } else {
+                                System.out.println("Will not save log, file \"" + Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_ERROR_SAVE_FILE_NAME + "\" not exists");
+                            }
+                        }
 
                         break;
                 }
             } else {
-                if (saveLogDirectoryFile.mkdirs()) {
-                    if (saveLogDirectoryFile.exists()) {
-                        FileWriter fileWriter;
+                if (logSaveDirs.mkdirs()) {
+                    switch (verbosity) {
+                        case Log.VERBOSE:
+                            if (verboseLogSaveFile.exists() && verboseLogSaveFile.isFile()) {
+                                verboseLogSave(tag, msg);
+                            } else {
+                                if (verboseLogSaveFile.createNewFile()) {
+                                    verboseLogSave(tag, msg);
+                                } else {
+                                    System.out.println("Will not save log, file \"" + Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_VERBOSE_SAVE_FILE_NAME + "\" not exists");
+                                }
+                            }
 
-                        switch (verbosity) {
-                            case Log.VERBOSE:
-                                fileWriter = new FileWriter(Configuration.sFilesDirPath + File.separator + LogHelper.class.getSimpleName() + File.separator + "verbose.log", true);
-                                fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
-                                fileWriter.close();
+                            break;
+                        case Log.DEBUG:
+                            if (debugLogSaveFile.exists() && debugLogSaveFile.isFile()) {
+                                debugLogSave(tag, msg);
+                            } else {
+                                if (debugLogSaveFile.createNewFile()) {
+                                    debugLogSave(tag, msg);
+                                } else {
+                                    System.out.println("Will not save log, file \"" + Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_DEBUG_SAVE_FILE_NAME + "\" not exists");
+                                }
+                            }
 
-                                break;
-                            case Log.DEBUG:
-                                fileWriter = new FileWriter(Configuration.sFilesDirPath + File.separator + LogHelper.class.getSimpleName() + File.separator + "debug.log", true);
-                                fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
-                                fileWriter.close();
+                            break;
+                        case Log.INFO:
+                            if (infoLogSaveFile.exists() && infoLogSaveFile.isFile()) {
+                                infoLogSave(tag, msg);
+                            } else {
+                                if (infoLogSaveFile.createNewFile()) {
+                                    infoLogSave(tag, msg);
+                                } else {
+                                    System.out.println("Will not save log, file \"" + Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_INFO_SAVE_FILE_NAME + "\" not exists");
+                                }
+                            }
 
-                                break;
-                            case Log.INFO:
-                                fileWriter = new FileWriter(Configuration.sFilesDirPath + File.separator + LogHelper.class.getSimpleName() + File.separator + "info.log", true);
-                                fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
-                                fileWriter.close();
+                            break;
+                        case Log.WARN:
+                            if (warnLogSaveFile.exists() && warnLogSaveFile.isFile()) {
+                                warnLogSave(tag, msg);
+                            } else {
+                                if (warnLogSaveFile.createNewFile()) {
+                                    warnLogSave(tag, msg);
+                                } else {
+                                    System.out.println("Will not save log, file \"" + Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_WARN_SAVE_FILE_NAME + "\" not exists");
+                                }
+                            }
 
-                                break;
-                            case Log.WARN:
-                                fileWriter = new FileWriter(Configuration.sFilesDirPath + File.separator + LogHelper.class.getSimpleName() + File.separator + "warn.log", true);
-                                fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
-                                fileWriter.close();
+                            break;
+                        case Log.ERROR:
+                            if (errorLogSaveFile.exists() && errorLogSaveFile.isFile()) {
+                                errorLogSave(tag, msg);
+                            } else {
+                                if (errorLogSaveFile.createNewFile()) {
+                                    errorLogSave(tag, msg);
+                                } else {
+                                    System.out.println("Will not save log, file \"" + Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_ERROR_SAVE_FILE_NAME + "\" not exists");
+                                }
+                            }
 
-                                break;
-                            case Log.ERROR:
-                                fileWriter = new FileWriter(Configuration.sFilesDirPath + File.separator + LogHelper.class.getSimpleName() + File.separator + "error.log", true);
-                                fileWriter.write(System.currentTimeMillis() + "; Tag: " + tag + "; Msg: " + msg + System.lineSeparator());
-                                fileWriter.close();
-
-                                break;
-                        }
+                            break;
                     }
+                } else {
+                    System.out.println("Will not save log files, directory \"" + Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + "\" not exists");
                 }
             }
         } catch (Exception e) {
