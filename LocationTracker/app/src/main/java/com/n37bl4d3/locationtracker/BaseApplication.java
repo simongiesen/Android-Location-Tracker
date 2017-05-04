@@ -14,11 +14,11 @@ public class BaseApplication extends Application {
 
     @Override
     public void onCreate() {
-        Configuration.sFilesDir = getFilesDir();
-        Configuration.sFilesDirPath = getFilesDir().getPath();
+        Configuration.sFilesDirMemory = getFilesDir();
+        Configuration.sFilesDirPathMemory = getFilesDir().getPath();
 
-        Configuration.sCacheDir = getCacheDir();
-        Configuration.sCacheDirPath = getCacheDir().getPath();
+        Configuration.sCacheDirMemory = getCacheDir();
+        Configuration.sCacheDirPathMemory = getCacheDir().getPath();
 
         super.onCreate();
         LogHelper.verboseLog(TAG,
