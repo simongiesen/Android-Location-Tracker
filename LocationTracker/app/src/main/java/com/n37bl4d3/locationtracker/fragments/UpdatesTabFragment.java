@@ -81,6 +81,7 @@ public class UpdatesTabFragment extends Fragment implements ITabLayout {
                             float speed = intent.getFloatExtra(LocationService.EXTRA_SPEED, 0);
 
                             Date date = new Date(time);
+                            
                             @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd G, HH:mm:ss z");
                             String formattedTime = dateFormat.format(date);
 
