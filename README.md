@@ -10,7 +10,7 @@
 <h2>Technical information</h2>
 <ul>
   <li>Compile SDK Version: 25</li>
-  <li>Build Tools Version: 25.0.2</li>
+  <li>Build Tools Version: 25.0.3</li>
   <li>Min SDK Version: 19</li>
   <li>Target SDK Version: 25</li>
   <li>Realm Mobile Database Version: 3.1.4</li>
