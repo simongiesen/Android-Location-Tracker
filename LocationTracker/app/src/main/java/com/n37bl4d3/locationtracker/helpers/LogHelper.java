@@ -14,12 +14,27 @@ public class LogHelper {
             try {
                 Log.v(Configuration.sApplicationName, msg);
             } catch (Exception e) {
+                System.out.println("Exception while trying to verbose log");
+
+                System.out.println("File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
+
+                System.out.println(e.getMessage());
+                System.out.println(e.toString());
+                
                 e.printStackTrace();
             }
-
-            if (Configuration.LOGGING_VERBOSE_SAVE) {
-                logSave(Log.VERBOSE, Configuration.sApplicationName, msg);
-            }
+        }
+        
+        if (Configuration.LOGGING_VERBOSE_SAVE) {
+            logSave(Log.VERBOSE, Configuration.sApplicationName, msg);
         }
     }
 
@@ -28,12 +43,27 @@ public class LogHelper {
             try {
                 Log.v(tag, msg);
             } catch (Exception e) {
+                System.out.println("Exception while trying to verbose log");
+
+                System.out.println("File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
+
+                System.out.println(e.getMessage());
+                System.out.println(e.toString());
+                
                 e.printStackTrace();
             }
-
-            if (Configuration.LOGGING_VERBOSE_SAVE) {
-                logSave(Log.VERBOSE, tag, msg);
-            }
+        }
+        
+        if (Configuration.LOGGING_VERBOSE_SAVE) {
+            logSave(Log.VERBOSE, tag, msg);
         }
     }
 
@@ -42,12 +72,27 @@ public class LogHelper {
             try {
                 Log.d(Configuration.sApplicationName, msg);
             } catch (Exception e) {
+                System.out.println("Exception while trying to debug log");
+
+                System.out.println("File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
+
+                System.out.println(e.getMessage());
+                System.out.println(e.toString());
+                
                 e.printStackTrace();
             }
-
-            if (Configuration.LOGGING_DEBUG_SAVE) {
-                logSave(Log.DEBUG, Configuration.sApplicationName, msg);
-            }
+        }
+        
+        if (Configuration.LOGGING_DEBUG_SAVE) {
+            logSave(Log.DEBUG, Configuration.sApplicationName, msg);
         }
     }
 
@@ -56,12 +101,27 @@ public class LogHelper {
             try {
                 Log.d(tag, msg);
             } catch (Exception e) {
+                System.out.println("Exception while trying to debug log");
+
+                System.out.println("File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
+
+                System.out.println(e.getMessage());
+                System.out.println(e.toString());
+                
                 e.printStackTrace();
             }
-
-            if (Configuration.LOGGING_DEBUG_SAVE) {
-                logSave(Log.DEBUG, tag, msg);
-            }
+        }
+        
+        if (Configuration.LOGGING_DEBUG_SAVE) {
+            logSave(Log.DEBUG, tag, msg);
         }
     }
 
@@ -70,12 +130,27 @@ public class LogHelper {
             try {
                 Log.i(Configuration.sApplicationName, msg);
             } catch (Exception e) {
+                System.out.println("Exception while trying to info log");
+
+                System.out.println("File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
+
+                System.out.println(e.getMessage());
+                System.out.println(e.toString());
+                
                 e.printStackTrace();
             }
-
-            if (Configuration.LOGGING_INFO_SAVE) {
-                logSave(Log.INFO, Configuration.sApplicationName, msg);
-            }
+        }
+        
+        if (Configuration.LOGGING_INFO_SAVE) {
+            logSave(Log.INFO, Configuration.sApplicationName, msg);
         }
     }
 
@@ -84,12 +159,27 @@ public class LogHelper {
             try {
                 Log.i(tag, msg);
             } catch (Exception e) {
+                System.out.println("Exception while trying to info log");
+
+                System.out.println("File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
+
+                System.out.println(e.getMessage());
+                System.out.println(e.toString());
+                
                 e.printStackTrace();
             }
-
-            if (Configuration.LOGGING_INFO_SAVE) {
-                logSave(Log.INFO, tag, msg);
-            }
+        }
+        
+        if (Configuration.LOGGING_INFO_SAVE) {
+            logSave(Log.INFO, tag, msg);
         }
     }
 
@@ -98,12 +188,27 @@ public class LogHelper {
             try {
                 Log.w(Configuration.sApplicationName, msg);
             } catch (Exception e) {
+                System.out.println("Exception while trying to warn log");
+
+                System.out.println("File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
+
+                System.out.println(e.getMessage());
+                System.out.println(e.toString());
+                
                 e.printStackTrace();
             }
-
-            if (Configuration.LOGGING_WARN_SAVE) {
-                logSave(Log.WARN, Configuration.sApplicationName, msg);
-            }
+        }
+        
+        if (Configuration.LOGGING_WARN_SAVE) {
+            logSave(Log.WARN, Configuration.sApplicationName, msg);
         }
     }
 
@@ -112,12 +217,27 @@ public class LogHelper {
             try {
                 Log.w(tag, msg);
             } catch (Exception e) {
+                System.out.println("Exception while trying to warn log");
+
+                System.out.println("File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
+
+                System.out.println(e.getMessage());
+                System.out.println(e.toString());
+                
                 e.printStackTrace();
             }
-
-            if (Configuration.LOGGING_WARN_SAVE) {
-                logSave(Log.WARN, tag, msg);
-            }
+        }
+        
+        if (Configuration.LOGGING_WARN_SAVE) {
+            logSave(Log.WARN, tag, msg);
         }
     }
 
@@ -126,12 +246,27 @@ public class LogHelper {
             try {
                 Log.e(Configuration.sApplicationName, msg);
             } catch (Exception e) {
+                System.out.println("Exception while trying to error log");
+
+                System.out.println("File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
+
+                System.out.println(e.getMessage());
+                System.out.println(e.toString());
+                
                 e.printStackTrace();
             }
-
-            if (Configuration.LOGGING_ERROR_SAVE) {
-                logSave(Log.ERROR, Configuration.sApplicationName, msg);
-            }
+        }
+        
+        if (Configuration.LOGGING_ERROR_SAVE) {
+            logSave(Log.ERROR, Configuration.sApplicationName, msg);
         }
     }
 
@@ -140,12 +275,27 @@ public class LogHelper {
             try {
                 Log.e(tag, msg);
             } catch (Exception e) {
+                System.out.println("Exception while trying to error log");
+
+                System.out.println("File name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getFileName() +
+                        "\", Line number: " +
+                        Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                        ", Class name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getClassName() +
+                        "\", Method name: \"" +
+                        Thread.currentThread().getStackTrace()[2].getMethodName() +
+                        "\"");
+
+                System.out.println(e.getMessage());
+                System.out.println(e.toString());
+                
                 e.printStackTrace();
             }
-
-            if (Configuration.LOGGING_ERROR_SAVE) {
-                logSave(Log.ERROR, tag, msg);
-            }
+        }
+        
+        if (Configuration.LOGGING_ERROR_SAVE) {
+            logSave(Log.ERROR, tag, msg);
         }
     }
 
@@ -216,7 +366,7 @@ public class LogHelper {
         File debugLogSaveFile = new File(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_DEBUG_SAVE_FILE_NAME);
         File infoLogSaveFile = new File(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_INFO_SAVE_FILE_NAME);
         File warnLogSaveFile = new File(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_WARN_SAVE_FILE_NAME);
-        File errorLogSaveFile = new File(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_ERROR);
+        File errorLogSaveFile = new File(Configuration.sFilesDirPathMemory + File.separator + LogHelper.class.getSimpleName() + File.separator + Configuration.LOGGING_ERROR_SAVE_FILE_NAME);
 
         try {
             if (logSaveDirs.exists() && logSaveDirs.isDirectory()) {
@@ -351,6 +501,21 @@ public class LogHelper {
                 }
             }
         } catch (Exception e) {
+            System.out.println("Exception while trying to save log");
+
+            System.out.println("File name: \"" +
+                    Thread.currentThread().getStackTrace()[2].getFileName() +
+                    "\", Line number: " +
+                    Thread.currentThread().getStackTrace()[2].getLineNumber() +
+                    ", Class name: \"" +
+                    Thread.currentThread().getStackTrace()[2].getClassName() +
+                    "\", Method name: \"" +
+                    Thread.currentThread().getStackTrace()[2].getMethodName() +
+                    "\"");
+
+            System.out.println(e.getMessage());
+            System.out.println(e.toString());
+
             e.printStackTrace();
         }
     }
