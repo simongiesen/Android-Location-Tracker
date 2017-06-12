@@ -59,7 +59,6 @@ public class BaseApplication extends Application {
 
             Configuration.sIsFeatureLocationAvailable = false;
         }
-
         if (packageManager.hasSystemFeature(PackageManager.FEATURE_LOCATION_NETWORK)) {
             LogHelper.infoLog(TAG, "Feature \"" + PackageManager.FEATURE_LOCATION_NETWORK + "\" is available");
 
@@ -69,7 +68,6 @@ public class BaseApplication extends Application {
 
             Configuration.sIsFeatureLocationNetworkAvailable = false;
         }
-
         if (packageManager.hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS)) {
             LogHelper.infoLog(TAG, "Feature \"" + PackageManager.FEATURE_LOCATION_GPS + "\" is available");
 
